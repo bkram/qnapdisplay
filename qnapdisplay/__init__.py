@@ -17,7 +17,7 @@ class QnapDisplay:
     both = [b'S\x05\x00\x01S\x05\x00\x03', b'S\x05\x00\x02S\x05\x00\x03', b'S\x05\x00\x03S\x05\x00\x00']
 
     def Init(self):
-        self.ser.write('M\0'.encode())
+        self.ser.write(b'M\0')
         initlcd = self.ser.read(4)
         if initlcd == 'S\x01\x00}':
             return True
@@ -28,7 +28,7 @@ class QnapDisplay:
         elif row == 1:
             initrow = 'M\f\1\20'
         writerow = '%s%s' % (initrow, text.ljust(16)[:16])
-        self.ser.write('M^\1'.encode())
+        self.ser.write(b'M^\1')
         self.ser.write(writerow.encode())
 
     def Read(self):
@@ -48,7 +48,7 @@ class QnapDisplay:
         return state
 
     def Enable(self):
-        self.ser.write('M^\1\n'.encode())
+        self.ser.write(b'M^\1\n')
 
     def Disable(self):
-        self.ser.write('M^\0\n'.encode())
+        self.ser.write(b'M^\0\n')
