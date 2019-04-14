@@ -27,4 +27,4 @@ if Lcd.Init:
     Lcd.Write(1, 'Stay forever')
 
 else:
-    print 'Oops something went wrong here'
+    print('Oops something went wrong here')
