@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from qnapdisplay import QnapDisplay
 import time
 
@@ -27,4 +27,4 @@ if Lcd.Init:
     Lcd.Write(1, 'Stay forever')
 
 else:
-    print 'Oops something went wrong here'
+    print('Oops something went wrong here')
