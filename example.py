@@ -1,30 +1,42 @@
 #!/usr/bin/env python3
-from qnapdisplay import QnapDisplay
+"""
+Qnapdisplay example
+"""
 import time
 
-Lcd = QnapDisplay()
+from qnapdisplay import QnapDisplay
 
-if Lcd.Init:
-    Lcd.Write(0, 'Qnap Display')
-    Lcd.Write(1, 'Press a key')
 
-    read = Lcd.Read()
-    Lcd.Write(1, '%s pressed' % (read))
-    time.sleep(2)
+def main():
+    """
+    Qnapdisplay example
+    """
+    lcd = QnapDisplay()
 
-    Lcd.Write(0, 'On and Off')
-    Lcd.Write(1, '10 times')
+    if lcd.init():
+        lcd.write(0, 'Qnap Display')
+        lcd.write(1, 'Press a key')
 
-    for x in range(0, 10):
+        read = lcd.read()
+        lcd.write(1, '%s pressed' % (read))
+        time.sleep(2)
 
-        Lcd.Disable()
-        time.sleep(4)
-        Lcd.Enable()
-        time.sleep(4)
+        lcd.write(0, 'On and Off')
+        lcd.write(1, '10 times')
 
-    Lcd.Enable()
-    Lcd.Write(0, 'Stay a while')
-    Lcd.Write(1, 'Stay forever')
+        for incr in range(0, 10):
+            print("Loop # {}".format(incr))
+            lcd.disable()
+            time.sleep(4)
+            lcd.enable()
+            time.sleep(4)
 
-else:
-    print('Oops something went wrong here')
+        lcd.enable()
+        lcd.write(0, 'Stay a while')
+        lcd.write(1, 'Stay forever')
+    else:
+        print('Oops something went wrong here')
+
+
+if __name__ == "__main__":
+    main()

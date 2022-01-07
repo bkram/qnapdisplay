@@ -1,25 +1,33 @@
 #!/usr/bin/env python3
+"""
+Qnapdisplay button test
+"""
 from qnapdisplay import QnapDisplay
-import time
 
-Lcd = QnapDisplay()
 
-if Lcd.Init:
+def main():
+    """
+    Qnapdisplay button test
+    """
+    lcd = QnapDisplay()
 
-    Lcd.Enable()
-    Lcd.Write(1, '')
+    if lcd.init():
+        lcd.enable()
+        lcd.write(1, '')
 
-    for x in range(1, 10):
+        for keypress in range(1, 10):
+            lcd.write(0, 'Enter key %d' % keypress)
+            read = lcd.read()
+            print('%s pressed' % read)
+            lcd.write(1, '%s pressed' % read)
 
-        Lcd.Write(0, 'Enter key %d' % x)
+        lcd.write(0, '')
+        lcd.write(1, '')
+        lcd.disable()
 
-        read = Lcd.Read()
-        print('%s pressed' % (read))
-        Lcd.Write(1, '%s pressed' % (read))
+    else:
+        print('Oops something went wrong here')
 
-    Lcd.Write(0, '')
-    Lcd.Write(1, '')
-    Lcd.Disable()
 
-else:
-    print('Oops something went wrong here')
+if __name__ == "__main__":
+    main()
