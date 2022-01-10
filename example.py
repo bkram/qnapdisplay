@@ -18,7 +18,7 @@ def main():
         lcd.write(1, 'Press a key')
 
         read = lcd.read()
-        lcd.write(1, '%s pressed' % (read))
+        lcd.write(1, '%s pressed' % read)
         time.sleep(2)
 
         lcd.write(0, 'On and Off')

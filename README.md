@@ -41,3 +41,15 @@ This means the functions in the QnapDisplay class have been refactored to the fo
 - disable
 
 In your old code you will need to make the function calls lower case.
+
+## New feature
+
+It is now possible specify a serial port, of your lcd is not connected to /dev/ttyS1, or if you are running Windows
+
+## Example using serial port /dev/ttyS2
+
+```python
+from qnapdisplay import QnapDisplay
+
+lcd = QnapDisplay(port='/dev/ttyS2')
+```
