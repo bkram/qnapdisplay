@@ -28,3 +28,16 @@ Thanks to the following persons:
 
 As my own lcd has died, I can no longer maintain it myself, contributions are of course welcomed.
 
+## Breaking changes in 0.2
+
+In version 0.2 the classes have been renamed to conform the python standards.
+
+This means the functions in the QnapDisplay class have been refactored to the following:
+
+- init
+- write
+- read
+- enable
+- disable
+
+In your old code you will need to make the function calls lower case.
