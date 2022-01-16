@@ -28,12 +28,24 @@ class QnapDisplay:
     __serial = None
 
     def __init__(self, port='/dev/ttyS1'):
+        """
+        Create QnapDisplay Class object
+        Parameters:
+            port : string
+                Which serial port you want tot use, default /dev/ttyS1
+        Returns:
+            None
+        """
         # Qnap connects its lcd to /dev/ttys1 by default
         self.port = port
 
     def init(self):
         """
         Initialize the LCD controller
+        Params:
+            None
+        Returns:
+            boolean: Result of the initialization
         """
         self.__serial = serial.Serial(self.port, 1200)
         self.__serial.write(self.__init_lcd)
@@ -46,6 +58,13 @@ class QnapDisplay:
     def write(self, row, text):
         """
         Write text to the LCD
+        Parameters:
+            row : int
+                Which row you want to write to
+            text : str
+                The text to be written
+        Returns:
+            None
         """
         if row in (0, 1):
             writerow = '%s%s' % (self.__display_lcd[row], text.ljust(16)[:16])
@@ -55,6 +74,11 @@ class QnapDisplay:
     def read(self):
         """
         Read a keypress from the panel
+        Parameters:
+            None
+        Returns:
+            str
+                pressed key(s)
         """
         key = self.__serial.read(8)
         if key in self.__down:
@@ -74,11 +98,19 @@ class QnapDisplay:
     def enable(self):
         """
         Enable LCD backlight
+        Parameters:
+            None
+        Returns:
+            None
         """
         self.__serial.write(self.__enable_lcd)
 
     def disable(self):
         """
        Disable LCD backlight
+        Parameters:
+            None
+       Returns:
+            None
         """
         self.__serial.write(self.__disable_lcd)
