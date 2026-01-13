@@ -10,6 +10,7 @@ Qnap systems that are known to work:
 - TS-453A
 - TS-459
 - TVS-872X
+- TS-559 Pro II
 
 ## Module install
 
